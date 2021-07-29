@@ -38,3 +38,29 @@ test("dots vectors", () => {
   const e = new Vector2(17, 20)
   expect(d.dot(e)).toBe(-6 * 17 + 12 * 20)
 })
+
+test("gets and sets magnitudes of vectors", () => {
+  expect(new Vector2(3, 4).magnitude).toBe(5)
+  expect(new Vector2(-3, 4).magnitude).toBe(5)
+  expect(new Vector2(3, -4).magnitude).toBe(5)
+  expect(new Vector2(-3, -4).magnitude).toBe(5)
+
+  const a = new Vector2(17, -3)
+  a.magnitude = 5
+  expect(a.magnitude).toBe(5)
+  expect(Math.sqrt(Math.pow(a.x, 2) + Math.pow(a.y, 2))).toBe(5)
+})
+
+test("scales vectors", () => {
+  const a = new Vector2(Math.random(), Math.random())
+  const s = Math.random() * 100 - 50
+  const b = Vector2.scale(a, s)
+  expect(b.magnitude).toBeCloseTo(a.magnitude * Math.abs(s))
+  expect(b.x).toBe(a.x * s)
+  expect(b.y).toBe(a.y * s)
+
+  const c = new Vector2(3, 4)
+  c.scale(-5)
+  expect(c.x).toBe(-15)
+  expect(c.y).toBe(-20)
+})
