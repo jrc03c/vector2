@@ -64,3 +64,33 @@ test("scales vectors", () => {
   expect(c.x).toBe(-15)
   expect(c.y).toBe(-20)
 })
+
+test("normalizes vectors", () => {
+  const a = new Vector2(Math.random() * 100 - 50, Math.random() * 100 - 50)
+  a.normalize()
+  expect(a.magnitude).toBeCloseTo(1)
+
+  const b = new Vector2(Math.random() * 100 - 50, Math.random() * 100 - 50)
+  const c = Vector2.normalize(b)
+  expect(b.magnitude).not.toBeCloseTo(c.magnitude)
+  expect(c.magnitude).toBeCloseTo(1)
+})
+
+test("copies vectors", () => {
+  const a = new Vector2(Math.random() * 100 - 50, Math.random() * 100 - 50)
+  const b = a.copy()
+  const c = a.clone()
+
+  expect(a.x).toBe(b.x)
+  expect(a.x).toBe(c.x)
+  expect(a.y).toBe(b.y)
+  expect(a.y).toBe(c.y)
+  expect(a === b).toBe(false)
+  expect(a === c).toBe(false)
+  expect(b === c).toBe(false)
+
+  const d = Vector2.copy(a)
+  expect(a.x).toBe(d.x)
+  expect(a.y).toBe(d.y)
+  expect(a === d).toBe(false)
+})

@@ -78,6 +78,14 @@ class Vector2 {
   static normalize(v) {
     return v.copy().normalize()
   }
+
+  static copy(v) {
+    return v.copy()
+  }
+
+  static clone(v) {
+    return v.copy()
+  }
 }
 
 if (typeof module !== "undefined") {
