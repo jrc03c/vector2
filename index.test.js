@@ -76,6 +76,33 @@ test("normalizes vectors", () => {
   expect(c.magnitude).toBeCloseTo(1)
 })
 
+test("gets and sets vector angles", () => {
+  const a = new Vector2(1, Math.sqrt(3))
+  a.magnitude *= 5
+
+  expect(a.magnitude).toBeCloseTo(10)
+  expect(a.angle).toBeCloseTo(Math.PI / 3)
+
+  a.angle += Math.PI / 4
+  expect(a.magnitude).toBeCloseTo(10)
+  expect(a.angle).toBeCloseTo(Math.PI / 3 + Math.PI / 4)
+
+  a.rotate(-Math.PI)
+  let newAngle = Math.PI / 3 + Math.PI / 4 - Math.PI
+  const k = Math.floor(newAngle / (Math.PI * 2))
+  newAngle -= k * Math.PI * 2
+  expect(a.magnitude).toBeCloseTo(10)
+  expect(a.angle).toBeCloseTo(newAngle)
+
+  a.magnitude *= 0.25
+  expect(a.magnitude).toBeCloseTo(2.5)
+  expect(a.angle).toBeCloseTo(newAngle)
+
+  a.normalize()
+  expect(a.magnitude).toBeCloseTo(1)
+  expect(a.angle).toBeCloseTo(newAngle)
+})
+
 test("copies vectors", () => {
   const a = new Vector2(Math.random() * 100 - 50, Math.random() * 100 - 50)
   const b = a.copy()
