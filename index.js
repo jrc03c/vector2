@@ -44,11 +44,11 @@ class Vector2 {
       if (self.y === 0) return NaN
       if (self.y > 0) return Math.PI / 2
       if (self.y < 0) return (3 * Math.PI) / 2
-    } else {
-      const angle = Math.atan(self.y / self.x) + (self.x < 0 ? Math.PI : 0)
-      const k = Math.floor(angle / (2 * Math.PI))
-      return angle - k * 2 * Math.PI
     }
+
+    const angle = Math.atan(self.y / self.x) + (self.x < 0 ? Math.PI : 0)
+    const k = Math.floor(angle / (2 * Math.PI))
+    return angle - k * 2 * Math.PI
   }
 
   set angle(theta) {
